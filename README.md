@@ -1,5 +1,5 @@
 Przykładowy obraz strony
-![obraz przykladowy](fadle.png)
+![obraz przykladowy](Fadle.png)
 
 Strona używa pliki obrazków z gry Factorio. Nie cała gra jest przetłumaczona na polski, więc zdecydowałem całą baze danych zrobić po angielsku, a klient jest po polsku.
 
