@@ -1,0 +1,81 @@
+<div  style="background-color: white; border-radius:10px; padding:4px; margin-bottom: 400px;">
+<h3 class="header">Dodanie nowego przedmiotu</h3>
+<form #f="ngForm" (ngSubmit)="dodaj(f)">
+    <div class="form-group">
+        <label for="Fnazwa" class="form-label">Nazwa:</label>
+        <input type="text" name="Fnazwa" id="Fnazwa" class="form-control" [(ngModel)] = "Nazwa" (input)="HintText()">
+
+        
+        <label for="Fikona" class="form-label">Ikona:</label>
+        <div style="display: flex; align-items: center; gap: 4px;">
+            <img  *ngIf="Ikona !== ''" [src]="'assets/images/' + Ikona" width="24" height="24">
+            <input type="text" name="Fikona" id="Fikona" class="form-control" [(ngModel)] = "Ikona">
+        </div>
+        <label for="isplaceble">
+            <input type="checkbox" name="isplaceble" id="isplaceble" [(ngModel)]="isplaceble" style="scale:200%; margin: 12px">
+        Czy mozna postawic?
+        </label><br>
+
+        <label for="Kategorie">Kategoria:</label>
+        <ng-select [items]="Kategorie"
+           name="kategoria"
+           bindValue="kategoria"
+           bindLabel="kategoria"
+           [(ngModel)]="KategoriaIn"
+           placeholder="Wybierz"
+           [clearable]="false"
+            class="form-select-like">
+        <ng-template ng-option-tmp let-item="item">
+        <img [src]="'assets/images/' + item.ikona" width="24" height="24" style="margin-right: 8px;">
+        {{ item.kategoria }}
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+            <img  *ngIf="item.kategoria !== ''" [src]="'assets/images/' + item.ikona" width="24" height="24" style="margin-right: 8px;">
+            {{ item.kategoria }}
+        </ng-template>
+        </ng-select>
+
+        
+
+        <label for="itemIle">Ilość składników:</label>
+        <ng-select [items]="[0,1,2,3,4,5,6]"
+            name="ile"
+           [(ngModel)]="itemIle"
+           placeholder="1"
+           [clearable]="false"
+            class="form-select-like">
+        <ng-template ng-option-tmp let-item="item">
+        {{ item }}
+        </ng-template>
+        </ng-select>
+
+        <div *ngFor="let i of DlaNgFor">
+        <label for="S{{i}}">Skladnik {{i}}:</label>
+        <ng-select [items]="allData"
+            name="S{{i}}"
+           bindLabel="nazwa"
+           bindValue="nazwa"
+           [(ngModel)]="Skladnik[i-1]"
+           placeholder=""
+           [clearable]="true"
+            class="form-select-like">
+        <ng-template ng-option-tmp let-item="item">
+            <div>
+                <img [src]="'assets/images/' + item.ikona" width="24" height="24" style="margin-right: 8px;">
+                {{ item.nazwa }}
+            </div>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+            <div>
+                <img  *ngIf="item.ikona !== ''"[src]="'assets/images/' + item.ikona" width="24" height="24" style="margin-right: 8px;">
+                {{ item.nazwa }}
+            </div>
+        </ng-template>
+        </ng-select>
+        </div>
+
+        
+    </div>
+    <button type="submit" class="btn btn-primary">DODAJ</button>
+</form>
+</div>

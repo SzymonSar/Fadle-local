@@ -1,0 +1,17 @@
+.header{
+    background-color: #c1a263;
+    border-radius: 4px;
+    padding: 4px;
+    width: fit-content;
+}
+.b{
+  background-color:  #e1c48b;
+  transition: background-color 0.2s ease;
+  border-radius: 8px;
+}
+.b:hover{
+  background-color: #c1a263;
+}
+.b:active{
+  background-color:#9c7f44 !important;
+}

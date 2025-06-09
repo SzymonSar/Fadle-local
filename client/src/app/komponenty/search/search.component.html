@@ -1,0 +1,159 @@
+<div class="container-center" style="display: flex; align-items: center;margin-top: 8px;" >
+    <label for="Search" class="label">Podaj przedmiot:</label>
+</div>
+<div class="container-center" style="display: flex; align-items: center; gap: 4px; margin-top: 8px" >
+        <ng-select [items]="allData"
+           name="Search"
+           bindValue="nazwa"
+           bindLabel="nazwa"
+           [(ngModel)]="Zgadnij"
+           placeholder="Wpisz przedmiot..."
+           [clearable]="false"
+           class="form-select-like"
+           style="max-width: 400px;
+            width: 400px; 
+            background-color: #c1a263;
+            border-width: 3px;
+            border-color: black;">
+        <ng-template ng-option-tmp let-item="item">
+            <div>
+                <img [src]="'assets/images/' + item.ikona" width="24" height="24" style="margin-right: 8px;">
+                {{ item.nazwa }}
+            </div>
+        </ng-template>
+        <ng-template ng-label-tmp let-item="item">
+                <img *ngIf="item.ikona != null" [src]="'assets/images/' + item.ikona" width="24" height="24" style="margin-right: 8px;">
+                {{ item.nazwa }}
+        </ng-template>
+        </ng-select>
+
+        <button class="button" (click)="sprawdz()" style="border-radius: 8px; scale: 130%">
+            <img src="assets/images/Played_green.png" width="16" height="22">
+        </button>
+</div>
+        <table *ngIf="Strzaly.length > 0" class="tablica-zgadywania" [class.fade-in]="Strzaly.length > 0">
+            <thead>
+                <tr>
+                <th>Ikona</th>
+                <th>Nazwa</th>
+                <th>Kategoria</th>
+                <th>Do postawienia?</th>
+                <th>Jest Skladnikiem?</th>
+                <th>Skladnik 1</th>
+                <th>Skladnik 2</th>
+                <th>Skladnik 3</th>
+                <th>Skladnik 4</th>
+                <th>Skladnik 5</th>
+                <th>Skladnik 6</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of Strzaly; let i = index" [class.fade-in]="i === Strzaly.length - 1">
+                <td><img *ngIf="item.ikona != null" [src]="'assets/images/' + item.ikona" width="64" height="64"></td>
+                <td [style.backgroundColor]="item.nazwa == daneGoal.nazwa ? good : bad">{{ item.nazwa }}</td>
+                <td [style.backgroundColor]="item.kategoria == daneGoal.kategoria ? good : bad">{{ item.kategoria }}</td>
+                <td [style.backgroundColor]="item.isplaceble == daneGoal.isplaceble ? good : bad">
+                    <div *ngIf="item.isplaceble == true">Tak</div>
+                    <div *ngIf="item.isplaceble == false">Nie</div>
+                </td>
+                <td [style.backgroundColor]="
+                    item.nazwa == daneGoal.item1 ||
+                    item.nazwa == daneGoal.item2 ||
+                    item.nazwa == daneGoal.item3 ||
+                    item.nazwa == daneGoal.item4 ||
+                    item.nazwa == daneGoal.item5 ||
+                    item.nazwa == daneGoal.item6  ? good : '#d1a45b'">
+                    <div *ngIf="
+                    item.nazwa == daneGoal.item1 ||
+                    item.nazwa == daneGoal.item2 ||
+                    item.nazwa == daneGoal.item3 ||
+                    item.nazwa == daneGoal.item4 ||
+                    item.nazwa == daneGoal.item5 ||
+                    item.nazwa == daneGoal.item6 ">Tak</div>
+                    <div *ngIf="
+                    item.nazwa != daneGoal.item1 &&
+                    item.nazwa != daneGoal.item2 &&
+                    item.nazwa != daneGoal.item3 &&
+                    item.nazwa != daneGoal.item4 &&
+                    item.nazwa != daneGoal.item5 &&
+                    item.nazwa != daneGoal.item6 ">Nie</div>
+                </td>
+                
+                <td [style.backgroundColor]="
+                    item.item1 == daneGoal.item1 ||
+                    item.item1 == daneGoal.item2 ||
+                    item.item1 == daneGoal.item3 ||
+                    item.item1 == daneGoal.item4 ||
+                    item.item1 == daneGoal.item5 ||
+                    item.item1 == daneGoal.item6  ? good : bad">
+                    <img *ngIf="item.item1" [src]="getImagePath(item.item1)" width="24" height="24">
+                    <br>
+                    {{ item.item1 }}
+                </td>
+                <td  [style.backgroundColor]=" item.item2 != '' ?
+                    item.item2 == daneGoal.item1 ||
+                    item.item2 == daneGoal.item2 ||
+                    item.item2 == daneGoal.item3 ||
+                    item.item2 == daneGoal.item4 ||
+                    item.item2 == daneGoal.item5 ||
+                    item.item2 == daneGoal.item6  ? good : bad
+                    : none">
+                    <img *ngIf="item.item2" [src]="getImagePath(item.item2)" width="24" height="24">
+                    <br>
+                    {{ item.item2 }}
+                </td>
+                <td  [style.backgroundColor]=" item.item3 != '' ?
+                    item.item3 == daneGoal.item1 ||
+                    item.item3 == daneGoal.item2 ||
+                    item.item3 == daneGoal.item3 ||
+                    item.item3 == daneGoal.item4 ||
+                    item.item3 == daneGoal.item5 ||
+                    item.item3 == daneGoal.item6  ? good : bad
+                    : none">
+                    <img *ngIf="item.item3" [src]="getImagePath(item.item3)" width="24" height="24">
+                    <br>
+                    {{ item.item3 }}
+                </td>
+                <td  [style.backgroundColor]=" item.item4 != '' ?
+                    item.item4 == daneGoal.item1 ||
+                    item.item4 == daneGoal.item2 ||
+                    item.item4 == daneGoal.item3 ||
+                    item.item4 == daneGoal.item4 ||
+                    item.item4 == daneGoal.item5 ||
+                    item.item4 == daneGoal.item6  ? good : bad
+                    : none">
+                    <img *ngIf="item.item4" [src]="getImagePath(item.item4)" width="24" height="24">
+                    <br>
+                    {{ item.item4 }}
+                </td>
+                <td  [style.backgroundColor]="item.item5 != '' ?
+                    item.item5 == daneGoal.item1 ||
+                    item.item5 == daneGoal.item2 ||
+                    item.item5 == daneGoal.item3 ||
+                    item.item5 == daneGoal.item4 ||
+                    item.item5 == daneGoal.item5 ||
+                    item.item5 == daneGoal.item6  ? good : bad
+                    : none">
+                    <img *ngIf="item.item5" [src]="getImagePath(item.item5)" width="24" height="24">
+                    <br>
+                    {{ item.item5 }}
+                </td>
+                <td  [style.backgroundColor]="item.item6 != '' ?
+                    item.item6 == daneGoal.item1 ||
+                    item.item6 == daneGoal.item2 ||
+                    item.item6 == daneGoal.item3 ||
+                    item.item6 == daneGoal.item4 ||
+                    item.item6 == daneGoal.item5 ||
+                    item.item6 == daneGoal.item6  ? good : bad
+                    : none">
+                    <img *ngIf="item.item6" [src]="getImagePath(item.item6)" width="24" height="24">
+                    <br>
+                    {{ item.item6 }}
+                </td>
+                
+                </tr>
+            </tbody>
+        </table>
+
+

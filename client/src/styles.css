@@ -1,0 +1,25 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@font-face {
+    font-family: 'fA';
+    src: url('assets/fonts/Full\ Automation.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'fA2';
+    src: url('assets/fonts/Full\ Automation-Squared.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  body {
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+              url('assets/images/factorio-wallpaper-preview-lq.jpg');
+  background-size: 100% auto;        
+  background-repeat: repeat-y;   
+  background-position: top center;    
+  min-height: 50vh;
+  margin-top: 10vh;
+  margin-bottom: 40vh;
+}
